@@ -519,7 +519,7 @@ public class Starter extends javax.swing.JFrame {
         RoundRobin r = new RoundRobin();
 
         try {
-            listaCompletados = resetBurst( r.allocateResources(lista, listaCompletados,tiempoQuantums)  );
+            listaCompletados = reiniciarEjecucion( r.allocateResources(lista, listaCompletados,tiempoQuantums)  );
         } catch (Exception e) {
             System.out.println("Hubo un problema");
         }
@@ -640,7 +640,7 @@ public class Starter extends javax.swing.JFrame {
     private javax.swing.JTextField txtPromedioServicio;
     private javax.swing.JTextField txtPromedioEspera;
 
-    private List<ProcessObj> resetBurst(List<ProcessObj> recive) {
+    private List<ProcessObj> reiniciarEjecucion(List<ProcessObj> recive) {
         DefaultTableModel mdl = (DefaultTableModel) tblListaProcesos.getModel();
         List<ProcessObj> sendList = new ArrayList<>();
 

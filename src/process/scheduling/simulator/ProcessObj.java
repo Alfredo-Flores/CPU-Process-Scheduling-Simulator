@@ -6,10 +6,6 @@
 
 package process.scheduling.simulator;
 
-/**
- *
- * @author Mahesh
- */
 public class ProcessObj {
     private String nombre;
     private int id;
