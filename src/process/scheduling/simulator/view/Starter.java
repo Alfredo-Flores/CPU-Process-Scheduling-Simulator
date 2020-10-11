@@ -7,19 +7,13 @@
 package process.scheduling.simulator.view;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import process.scheduling.simulator.ProcessObj;
 import process.scheduling.simulator.fcfs.FirstComeFirstServe;
 import process.scheduling.simulator.roundRobin.RoundRobin;
 import process.scheduling.simulator.sjf.ShortestJobFirst;
-import process.scheduling.simulator.srtf.ShortestRemainingTime;
 
-/**
- *
- * @author Mahesh
- */
 public class Starter extends javax.swing.JFrame {
 
     /**
@@ -27,7 +21,7 @@ public class Starter extends javax.swing.JFrame {
      */
     public Starter() {
         initComponents();
-        DefaultTableModel mdl = (DefaultTableModel) tblAddedProcess.getModel();
+        DefaultTableModel mdl = (DefaultTableModel) tblListaProcesos.getModel();
             mdl.setRowCount(0);
     }
 
@@ -40,7 +34,6 @@ public class Starter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,78 +41,57 @@ public class Starter extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        pIdTxt = new javax.swing.JTextField();
-        pNameTxt = new javax.swing.JTextField();
-        pATimeTxt = new javax.swing.JTextField();
-        pBTimeTxt = new javax.swing.JTextField();
-        createProcess = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtInstanteLlegada = new javax.swing.JTextField();
+        txtTiempoEspera = new javax.swing.JTextField();
+        btnCrearProceso = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        sJF = new javax.swing.JButton();
-        rRound = new javax.swing.JButton();
-        fCFS = new javax.swing.JButton();
-        sRT = new javax.swing.JButton();
+        btnSJF = new javax.swing.JButton();
+        btnRoundRobin = new javax.swing.JButton();
+        btnFCFS = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAddedProcess = new javax.swing.JTable();
+        tblListaProcesos = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        btnClearTbl = new javax.swing.JButton();
-        tQuantumtxt = new javax.swing.JTextField();
+        btnLimpiarTabla = new javax.swing.JButton();
+        txtQuantums = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblComplete = new javax.swing.JTable();
+        tblListaCompletados = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        lblAvgTTime = new javax.swing.JLabel();
-        lblAvgWtime = new javax.swing.JLabel();
-        lblthroughput = new javax.swing.JLabel();
-        txtAvgTurn = new javax.swing.JTextField();
-        txtWait = new javax.swing.JTextField();
-        txtThroughput = new javax.swing.JTextField();
+        lblPromedioServicio = new javax.swing.JLabel();
+        lblPromedioEspera = new javax.swing.JLabel();
+        txtPromedioServicio = new javax.swing.JTextField();
+        txtPromedioEspera = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CPU Scheduling Algorithms Simulator");
+        setTitle("Simulador");
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
-        jLabel1.setText("CPU Scheduling Algorithm Simulator");
+        jLabel1.setText("Simulador de CPU");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Create process");
+        jLabel2.setText("Crear proceso");
 
-        jLabel3.setText("Process Id");
+        jLabel3.setText("ID del proceso");
 
-        jLabel4.setText("Process Name");
+        jLabel4.setText("Nombre del proceso");
 
-        jLabel5.setText("Arrival Time");
+        jLabel5.setText("Instante de llegada");
 
-        jLabel6.setText("Burst Time");
+        jLabel6.setText("Tiempo de ejecucion");
 
-        pIdTxt.addActionListener(new java.awt.event.ActionListener() {
+
+        btnCrearProceso.setText("Crear proceso");
+        btnCrearProceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pIdTxtActionPerformed(evt);
-            }
-        });
-
-        pNameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pNameTxtActionPerformed(evt);
-            }
-        });
-
-        pBTimeTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pBTimeTxtActionPerformed(evt);
-            }
-        });
-
-        createProcess.setText("Create process");
-        createProcess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createProcessActionPerformed(evt);
+                btnCrearProcesoActionPerformed(evt);
             }
         });
 
@@ -132,22 +104,22 @@ public class Starter extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pIdTxt)
-                            .addComponent(pNameTxt)
-                            .addComponent(pATimeTxt)
-                            .addComponent(pBTimeTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
+                            .addComponent(txtID)
+                            .addComponent(txtNombre)
+                            .addComponent(txtInstanteLlegada)
+                            .addComponent(txtTiempoEspera, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
-                        .addComponent(createProcess)))
+                        .addComponent(btnCrearProceso)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,51 +130,44 @@ public class Starter extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(pIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(pNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(pATimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtInstanteLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(pBTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTiempoEspera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(createProcess)
+                .addComponent(btnCrearProceso)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        sJF.setText("Shortest job first");
-        sJF.addActionListener(new java.awt.event.ActionListener() {
+        btnSJF.setText("Shortest job first");
+        btnSJF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sJFActionPerformed(evt);
+                btnSJFActionPerformed(evt);
             }
         });
 
-        rRound.setText("Round robin");
-        rRound.addActionListener(new java.awt.event.ActionListener() {
+        btnRoundRobin.setText("Round robin");
+        btnRoundRobin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rRoundActionPerformed(evt);
+                btnrRoundRobinActionPerformed(evt);
             }
         });
 
-        fCFS.setText("First come first serve");
-        fCFS.addActionListener(new java.awt.event.ActionListener() {
+        btnFCFS.setText("First come first serve");
+        btnFCFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fCFSActionPerformed(evt);
-            }
-        });
-
-        sRT.setText("Shortest remaining time");
-        sRT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sRTActionPerformed(evt);
+                btnFCFSActionPerformed(evt);
             }
         });
 
@@ -212,36 +177,34 @@ public class Starter extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(sJF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSJF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rRound, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRoundRobin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fCFS, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFCFS, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sRT, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {fCFS, rRound, sJF, sRT});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, btnFCFS, btnRoundRobin, btnSJF);
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sJF, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSJF, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rRound)
-                        .addComponent(fCFS, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sRT, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRoundRobin)
+                        .addComponent(btnFCFS, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {fCFS, rRound, sJF, sRT});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnFCFS, btnRoundRobin, btnSJF});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblAddedProcess.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaProcesos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -252,28 +215,23 @@ public class Starter extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Process Id", "Name", "Arrival time", "Burst time"
+                "ID", "Nombre", "Instante de llegada", "Tiempo de ejecucion"
             }
         ));
-        jScrollPane1.setViewportView(tblAddedProcess);
+        jScrollPane1.setViewportView(tblListaProcesos);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("processes");
+        jLabel7.setText("Procesos");
 
-        btnClearTbl.setText("Clear ");
-        btnClearTbl.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiarTabla.setText("Limpiar Tabla");
+        btnLimpiarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearTblActionPerformed(evt);
+                btnLimpiarTablaActionPerformed(evt);
             }
         });
 
-        tQuantumtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tQuantumtxtActionPerformed(evt);
-            }
-        });
 
-        jLabel11.setText("Time Quantum :");
+        jLabel11.setText("Tiempo en Quantums:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -290,9 +248,9 @@ public class Starter extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
-                .addComponent(tQuantumtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtQuantums, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83)
-                .addComponent(btnClearTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLimpiarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -304,18 +262,18 @@ public class Starter extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnClearTbl)
+                    .addComponent(btnLimpiarTabla)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tQuantumtxt)
+                            .addComponent(txtQuantums)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tblComplete.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaCompletados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -323,10 +281,10 @@ public class Starter extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Process Id", "Name", "Arrival Time", "Brust Time", "Completed Time", "Waiting Time", "Turnaround Time"
+                "ID", "Nombre", "Instante de llegada", "Tiempo de ejecucion", "Instante de fin", "Tiempo de espera", "Tiempo de Servicio"
             }
         ));
-        jScrollPane2.setViewportView(tblComplete);
+        jScrollPane2.setViewportView(tblListaCompletados);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -348,35 +306,17 @@ public class Starter extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Average Turnaround Time    :");
+        jLabel8.setText("Promedio de tiempo de servicio    :");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("Average Waiting Time          :");
+        jLabel9.setText("Promedio de tiempo de espera    :");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel10.setText("Throughput                        :");
+        lblPromedioServicio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblPromedioEspera.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        lblAvgTTime.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPromedioServicio.setEditable(false);
+        txtPromedioEspera.setEditable(false);
 
-        lblAvgWtime.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        lblthroughput.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        txtAvgTurn.setEditable(false);
-        txtAvgTurn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAvgTurnActionPerformed(evt);
-            }
-        });
-
-        txtWait.setEditable(false);
-        txtWait.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtWaitActionPerformed(evt);
-            }
-        });
-
-        txtThroughput.setEditable(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -386,18 +326,15 @@ public class Starter extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtWait, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(txtThroughput)
-                    .addComponent(txtAvgTurn))
+                    .addComponent(txtPromedioEspera, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(txtPromedioServicio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAvgTTime)
-                    .addComponent(lblAvgWtime)
-                    .addComponent(lblthroughput))
+                    .addComponent(lblPromedioServicio)
+                    .addComponent(lblPromedioEspera))
                 .addGap(406, 406, 406))
         );
         jPanel5Layout.setVerticalGroup(
@@ -406,23 +343,20 @@ public class Starter extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(lblAvgTTime, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPromedioServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAvgWtime)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblthroughput))
+                        .addComponent(lblPromedioEspera)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAvgTurn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPromedioServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txtWait, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPromedioEspera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtThroughput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE))))
                 .addContainerGap(143, Short.MAX_VALUE))
         );
 
@@ -465,249 +399,176 @@ public class Starter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pIdTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pIdTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pIdTxtActionPerformed
+    private void btnSJFActionPerformed(java.awt.event.ActionEvent evt) {
+        List<ProcessObj> lista = new ArrayList<>();
+        List<ProcessObj> listaCompletados = new ArrayList<>();
+        DefaultTableModel mdl = (DefaultTableModel) tblListaProcesos.getModel();
 
-    private void pNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pNameTxtActionPerformed
-
-    private void pBTimeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pBTimeTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pBTimeTxtActionPerformed
-
-    private void sJFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sJFActionPerformed
-        List<ProcessObj> list = new ArrayList<>();
-        List<ProcessObj> listCompleted = new ArrayList<>();
-//        int timeQ = Integer.parseInt(this.tQuantumtxt.getText());
-        DefaultTableModel mdl = (DefaultTableModel) tblAddedProcess.getModel();
         for (int i = 0; i < mdl.getRowCount(); i++) {
-            int pId = (int) mdl.getValueAt(i, 0);
-            String pName = (String) mdl.getValueAt(i, 1);
-            int aTime = (int) mdl.getValueAt(i, 2);
-            int bTime = (int) mdl.getValueAt(i, 3);
-            ProcessObj p1 = new ProcessObj(pName,pId,aTime,bTime);
-            list.add(p1);
-//            System.out.println(p1.getId()+" "+p1.getName()+" "+p1.getArrivalTime()+" "+p1.getBrustTime());
-        }
-//        mdl.setRowCount(0);
-         ShortestJobFirst sjf = new ShortestJobFirst();
-        try {
-            listCompleted=sjf.allocateResources(list);
-            
-        } catch (Exception e) {
-            System.out.println("Fail to complete the task=>");
-        }
-        DefaultTableModel mdlComplete = (DefaultTableModel) tblComplete.getModel();
-        mdlComplete.setRowCount(0);
-        int totWaitingTime=0;
-        int totTurnTime = 0;
-        float avgWait,avgTurn;
-        
-        for (int i = 0; i < listCompleted.size(); i++) {
-            ProcessObj p1 = listCompleted.get(i);
-            mdlComplete.addRow(new Object[]{p1.getId(),p1.getName(),p1.getArrivalTime(),p1.getBrustTime(),p1.getCompleteTime(),p1.getWaitingTime(),p1.getTurnaroundTime()});
-            totWaitingTime = totWaitingTime + p1.getWaitingTime();
-            totTurnTime = totTurnTime + p1.getTurnaroundTime();
-        }
-        avgWait=(float)totWaitingTime/listCompleted.size();
-        float avgWaitRound = (float) (Math.round(avgWait * 100.0) / 100.0);
-        
-        avgTurn=(float)totTurnTime/listCompleted.size();
-        float avgTurnRound = (float) (Math.round(avgTurn * 100.0) / 100.0);
-        
-        txtAvgTurn.setText(String.valueOf(avgTurnRound));
-        txtWait.setText(String.valueOf(avgWaitRound));
-        txtThroughput.setText(calculateThroughput(listCompleted));
-    }//GEN-LAST:event_sJFActionPerformed
 
-    private void fCFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fCFSActionPerformed
-        List<ProcessObj> list = new ArrayList<>();
-        List<ProcessObj> listCompleted = new ArrayList<>();
-        DefaultTableModel mdl = (DefaultTableModel) tblAddedProcess.getModel();
+            int ID = (int) mdl.getValueAt(i, 0);
+            String nombre = (String) mdl.getValueAt(i, 1);
+            int instanteLlegada = (int) mdl.getValueAt(i, 2);
+            int tiempoEspera = (int) mdl.getValueAt(i, 3);
+
+            ProcessObj p1 = new ProcessObj(nombre,ID,instanteLlegada,tiempoEspera);
+
+            lista.add(p1);
+        }
+
+        ShortestJobFirst sjf = new ShortestJobFirst();
+
+        try {
+            listaCompletados = sjf.allocateResources(lista);
+        } catch (Exception e) {
+            System.out.println("Hubo un problema");
+        }
+
+        DefaultTableModel mdlCompletados = (DefaultTableModel) tblListaCompletados.getModel();
+        mdlCompletados.setRowCount(0);
+
+        int totalTiempoEspera = 0;
+        int totalTiempoServicio = 0;
+        float promedioEspera, promedioServicio;
+        
+        for (int i = 0; i < listaCompletados.size(); i++) {
+            ProcessObj p1 = listaCompletados.get(i);
+            mdlCompletados.addRow(new Object[]{p1.getId(),p1.getNombre(),p1.getInstantellegada(),p1.getTiempoejecucion(),p1.getInstantefin(),p1.getTiempoespera(),p1.getTiemposervicio()});
+
+            totalTiempoEspera = totalTiempoEspera + p1.getTiempoespera();
+            totalTiempoServicio = totalTiempoServicio + p1.getTiemposervicio();
+        }
+
+        promedioEspera = (float) totalTiempoEspera/listaCompletados.size();
+        float avgWaitRound = (float) (Math.round(promedioEspera * 100.0) / 100.0);
+        
+        promedioServicio = (float) totalTiempoServicio/listaCompletados.size();
+        float avgTurnRound = (float) (Math.round(promedioServicio * 100.0) / 100.0);
+        
+        txtPromedioServicio.setText(String.valueOf(avgTurnRound));
+        txtPromedioEspera.setText(String.valueOf(avgWaitRound));
+    }
+
+    private void btnFCFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fCFSActionPerformed
+        List<ProcessObj> lista = new ArrayList<>();
+        List<ProcessObj> listaCompletados = new ArrayList<>();
+        DefaultTableModel mdl = (DefaultTableModel) tblListaProcesos.getModel();
+
         for (int i = 0; i < mdl.getRowCount(); i++) {
-            int pId = (int) mdl.getValueAt(i, 0);
-            String pName = (String) mdl.getValueAt(i, 1);
-            int aTime = (int) mdl.getValueAt(i, 2);
-            int bTime = (int) mdl.getValueAt(i, 3);
-            ProcessObj p1 = new ProcessObj(pName,pId,aTime,bTime);
-            list.add(p1);
-        }
-        FirstComeFirstServe f1 = new FirstComeFirstServe();
-        try {
-            listCompleted=f1.allocateResources(list);
-            
-        } catch (Exception e) {
-            System.out.println("Fail to complete the task=>");
-        }
-        DefaultTableModel mdlComplete = (DefaultTableModel) tblComplete.getModel();
-        mdlComplete.setRowCount(0);
-        int totWaitingTime=0;
-        int totTurnTime = 0;
-        float avgWait,avgTurn;
-        
-        for (int i = 0; i < listCompleted.size(); i++) {
-            ProcessObj p1 = listCompleted.get(i);
-            mdlComplete.addRow(new Object[]{p1.getId(),p1.getName(),p1.getArrivalTime(),p1.getBrustTime(),p1.getCompleteTime(),p1.getWaitingTime(),p1.getTurnaroundTime()});
-            totWaitingTime = totWaitingTime + p1.getWaitingTime();
-            totTurnTime = totTurnTime + p1.getTurnaroundTime();
-        }
-        avgWait=(float)totWaitingTime/listCompleted.size();
-        float avgWaitRound = (float) (Math.round(avgWait * 100.0) / 100.0);
-        
-        avgTurn=(float)totTurnTime/listCompleted.size();
-        float avgTurnRound = (float) (Math.round(avgTurn * 100.0) / 100.0);
-        
-        txtAvgTurn.setText(String.valueOf(avgTurnRound));
-        txtWait.setText(String.valueOf(avgWaitRound));
-        txtThroughput.setText(calculateThroughput(listCompleted));
-//        avgWait=(float)totWaitingTime/listCompleted.size();
-//        avgTurn=(float)totTurnTime/listCompleted.size();
-//        
-//        txtAvgTurn.setText(String.valueOf(avgTurn));
-//        txtWait.setText(String.valueOf(avgWait));
-//        txtThroughput.setText(calculateThroughput(listCompleted));
-       
-    }//GEN-LAST:event_fCFSActionPerformed
+            int ID = (int) mdl.getValueAt(i, 0);
+            String Nombre = (String) mdl.getValueAt(i, 1);
+            int InstanteLlegada = (int) mdl.getValueAt(i, 2);
+            int TiempoEspera = (int) mdl.getValueAt(i, 3);
 
-    private void sRTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sRTActionPerformed
-        List<ProcessObj> list = new ArrayList<>();
-        List<ProcessObj> listCompleted = new ArrayList<>();
-        DefaultTableModel mdl = (DefaultTableModel) tblAddedProcess.getModel();
+            ProcessObj p1 = new ProcessObj(Nombre,ID,InstanteLlegada,TiempoEspera);
+            lista.add(p1);
+        }
+
+        FirstComeFirstServe fcfs = new FirstComeFirstServe();
+
+        try {
+            listaCompletados = fcfs.allocateResources(lista);
+        } catch (Exception e) {
+            System.out.println("Hubo un problema");
+        }
+
+        DefaultTableModel mdlCompletados = (DefaultTableModel) tblListaCompletados.getModel();
+        mdlCompletados.setRowCount(0);
+
+        int totalTiempoEspera = 0;
+        int totalTiempoServicio = 0;
+        float promedioEspera, promedioServicio;
+
+        for (int i = 0; i < listaCompletados.size(); i++) {
+            ProcessObj p1 = listaCompletados.get(i);
+            mdlCompletados.addRow(new Object[]{p1.getId(),p1.getNombre(),p1.getInstantellegada(),p1.getTiempoejecucion(),p1.getInstantefin(),p1.getTiempoespera(),p1.getTiemposervicio()});
+
+            totalTiempoEspera = totalTiempoEspera + p1.getTiempoespera();
+            totalTiempoServicio = totalTiempoServicio + p1.getTiemposervicio();
+        }
+
+        promedioEspera = (float) totalTiempoEspera/listaCompletados.size();
+        float avgWaitRound = (float) (Math.round(promedioEspera * 100.0) / 100.0);
+
+        promedioServicio = (float) totalTiempoServicio/listaCompletados.size();
+        float avgTurnRound = (float) (Math.round(promedioServicio * 100.0) / 100.0);
+
+        txtPromedioServicio.setText(String.valueOf(avgTurnRound));
+        txtPromedioEspera.setText(String.valueOf(avgWaitRound));
+    }
+
+    private void btnrRoundRobinActionPerformed(java.awt.event.ActionEvent evt) {
+        List<ProcessObj> lista = new ArrayList<>();
+        List<ProcessObj> listaCompletados = new ArrayList<>();
+        int tiempoQuantums = Integer.parseInt(this.txtQuantums.getText());
+        DefaultTableModel mdl = (DefaultTableModel) tblListaProcesos.getModel();
+
         for (int i = 0; i < mdl.getRowCount(); i++) {
-            int pId = (int) mdl.getValueAt(i, 0);
-            String pName = (String) mdl.getValueAt(i, 1);
-            int aTime = (int) mdl.getValueAt(i, 2);
-            int bTime = (int) mdl.getValueAt(i, 3);
-            ProcessObj p1 = new ProcessObj(pName,pId,aTime,bTime);
-            ProcessObj p2 = new ProcessObj(pName,pId,aTime,bTime);
-            list.add(p1);
-            listCompleted.add(p2);
-//            System.out.println(p1.getId()+" "+p1.getName()+" "+p1.getArrivalTime()+" "+p1.getBrustTime());
+            int ID = (int) mdl.getValueAt(i, 0);
+            String Nombre = (String) mdl.getValueAt(i, 1);
+            int InstanteLlegada = (int) mdl.getValueAt(i, 2);
+            int TiempoEspera = (int) mdl.getValueAt(i, 3);
+
+            ProcessObj p1 = new ProcessObj(Nombre,ID,InstanteLlegada,TiempoEspera);
+            ProcessObj p2 = new ProcessObj(Nombre,ID,InstanteLlegada,TiempoEspera);
+
+            lista.add(p1);
+            listaCompletados.add(p2);
         }
-//        mdl.setRowCount(0);
-        ShortestRemainingTime srt = new ShortestRemainingTime();
+
+        RoundRobin r = new RoundRobin();
+
         try {
-
-            listCompleted = resetBurst(srt.allocateResources(list, listCompleted));
-            
+            listaCompletados = resetBurst( r.allocateResources(lista, listaCompletados,tiempoQuantums)  );
         } catch (Exception e) {
-            System.out.println("Fail to complete the task=>");
+            System.out.println("Hubo un problema");
         }
-        DefaultTableModel mdlComplete = (DefaultTableModel) tblComplete.getModel();
-        mdlComplete.setRowCount(0);
-        int totWaitingTime=0;
-        int totTurnTime = 0;
-        float avgWait,avgTurn;
-        
-        for (int i = 0; i < listCompleted.size(); i++) {
-            ProcessObj p1 = listCompleted.get(i);
-            mdlComplete.addRow(new Object[]{p1.getId(),p1.getName(),p1.getArrivalTime(),p1.getBrustTime(),p1.getCompleteTime(),p1.getWaitingTime(),p1.getTurnaroundTime()});
-            totWaitingTime = totWaitingTime + p1.getWaitingTime();
-            totTurnTime = totTurnTime + p1.getTurnaroundTime();
+
+        DefaultTableModel mdlCompletados = (DefaultTableModel) tblListaCompletados.getModel();
+        mdlCompletados.setRowCount(0);
+
+        int totalTiempoEspera = 0;
+        int totalTiempoServicio = 0;
+        float promedioEspera, promedioServicio;
+
+        for (int i = 0; i < listaCompletados.size(); i++) {
+            ProcessObj p1 = listaCompletados.get(i);
+            mdlCompletados.addRow(new Object[]{p1.getId(),p1.getNombre(),p1.getInstantellegada(),p1.getTiempoejecucion(),p1.getInstantefin(),p1.getTiempoespera(),p1.getTiemposervicio()});
+
+            totalTiempoEspera = totalTiempoEspera + p1.getTiempoespera();
+            totalTiempoServicio = totalTiempoServicio + p1.getTiemposervicio();
         }
-        avgWait=(float)totWaitingTime/listCompleted.size();
-        float avgWaitRound = (float) (Math.round(avgWait * 100.0) / 100.0);
-        
-        avgTurn=(float)totTurnTime/listCompleted.size();
-        float avgTurnRound = (float) (Math.round(avgTurn * 100.0) / 100.0);
-        
-        txtAvgTurn.setText(String.valueOf(avgTurnRound));
-        txtWait.setText(String.valueOf(avgWaitRound));
-        txtThroughput.setText(calculateThroughput(listCompleted));
-        
-//        avgWait=(float)totWaitingTime/listCompleted.size();
-//        avgTurn=(float)totTurnTime/listCompleted.size();
-//        
-//        txtAvgTurn.setText(String.valueOf(avgTurn));
-//        txtWait.setText(String.valueOf(avgWait));
-//        txtThroughput.setText(calculateThroughput(listCompleted));
-    }//GEN-LAST:event_sRTActionPerformed
 
-    private void createProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProcessActionPerformed
-       int pId = Integer.parseInt(this.pIdTxt.getText());
-       String pName = this.pNameTxt.getText();
-       int aTime = Integer.parseInt(this.pATimeTxt.getText());
-       int bTime = Integer.parseInt(this.pBTimeTxt.getText());
-       ProcessObj p1 = new ProcessObj(pName,pId,aTime,bTime);
-       
-       DefaultTableModel mdl = (DefaultTableModel) tblAddedProcess.getModel();
-        mdl.addRow(new Object[]{p1.getId(),p1.getName(),p1.getArrivalTime(),p1.getBrustTime()});
-    }//GEN-LAST:event_createProcessActionPerformed
+        promedioEspera = (float) totalTiempoEspera/listaCompletados.size();
+        float avgWaitRound = (float) (Math.round(promedioEspera * 100.0) / 100.0);
 
-    private void btnClearTblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearTblActionPerformed
-        DefaultTableModel mdl = (DefaultTableModel) tblAddedProcess.getModel();
+        promedioServicio = (float) totalTiempoServicio/listaCompletados.size();
+        float avgTurnRound = (float) (Math.round(promedioServicio * 100.0) / 100.0);
+
+        txtPromedioServicio.setText(String.valueOf(avgTurnRound));
+        txtPromedioEspera.setText(String.valueOf(avgWaitRound));
+    }
+
+
+
+    private void btnCrearProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProcessActionPerformed
+        int ID = Integer.parseInt(this.txtID.getText());
+        String Nombre = this.txtNombre.getText();
+        int InstanteLlegada = Integer.parseInt(this.txtInstanteLlegada.getText());
+        int TiempoEspera = Integer.parseInt(this.txtTiempoEspera.getText());
+
+        ProcessObj p1 = new ProcessObj(Nombre,ID,InstanteLlegada,TiempoEspera);
+
+        DefaultTableModel mdl = (DefaultTableModel) tblListaProcesos.getModel();
+
+        mdl.addRow(new Object[]{p1.getId(),p1.getNombre(),p1.getInstantellegada(),p1.getTiempoejecucion()});
+    }
+
+    private void btnLimpiarTablaActionPerformed(java.awt.event.ActionEvent evt) {
+        DefaultTableModel mdl = (DefaultTableModel) tblListaProcesos.getModel();
         mdl.setRowCount(0);
-    }//GEN-LAST:event_btnClearTblActionPerformed
+    }
 
-    private void tQuantumtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tQuantumtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tQuantumtxtActionPerformed
-
-    private void rRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rRoundActionPerformed
-        List<ProcessObj> list = new ArrayList<>();
-        List<ProcessObj> listCompleted = new ArrayList<>();
-        int timeQ = Integer.parseInt(this.tQuantumtxt.getText());
-        DefaultTableModel mdl = (DefaultTableModel) tblAddedProcess.getModel();
-        for (int i = 0; i < mdl.getRowCount(); i++) {
-            int pId = (int) mdl.getValueAt(i, 0);
-            String pName = (String) mdl.getValueAt(i, 1);
-            int aTime = (int) mdl.getValueAt(i, 2);
-            int bTime = (int) mdl.getValueAt(i, 3);
-            ProcessObj p1 = new ProcessObj(pName,pId,aTime,bTime);
-            ProcessObj p2 = new ProcessObj(pName,pId,aTime,bTime);
-            list.add(p1);
-            listCompleted.add(p2);
-//            System.out.println(p1.getId()+" "+p1.getName()+" "+p1.getArrivalTime()+" "+p1.getBrustTime());
-        }
-//        mdl.setRowCount(0);
-         RoundRobin r = new RoundRobin();
-        try {
-//            listCompleted=r.allocateResources(list, timeQ);
-            listCompleted = resetBurst(r.allocateResources(list, listCompleted,timeQ));
-            
-        } catch (Exception e) {
-            System.out.println("Fail to complete the task=>");
-        }
-        DefaultTableModel mdlComplete = (DefaultTableModel) tblComplete.getModel();
-        mdlComplete.setRowCount(0);
-        int totWaitingTime=0;
-        int totTurnTime = 0;
-        float avgWait,avgTurn;
-        
-        for (int i = 0; i < listCompleted.size(); i++) {
-            ProcessObj p1 = listCompleted.get(i);
-            mdlComplete.addRow(new Object[]{p1.getId(),p1.getName(),p1.getArrivalTime(),p1.getBrustTime(),p1.getCompleteTime(),p1.getWaitingTime(),p1.getTurnaroundTime()});
-            totWaitingTime = totWaitingTime + p1.getWaitingTime();
-            totTurnTime = totTurnTime + p1.getTurnaroundTime();
-        }
-        avgWait=(float)totWaitingTime/listCompleted.size();
-        float avgWaitRound = (float) (Math.round(avgWait * 100.0) / 100.0);
-        
-        avgTurn=(float)totTurnTime/listCompleted.size();
-        float avgTurnRound = (float) (Math.round(avgTurn * 100.0) / 100.0);
-        
-        txtAvgTurn.setText(String.valueOf(avgTurnRound));
-        txtWait.setText(String.valueOf(avgWaitRound));
-        txtThroughput.setText(calculateThroughput(listCompleted));
-        
-//        
-//        avgWait=(float)totWaitingTime/listCompleted.size();
-//        avgTurn=(float)totTurnTime/listCompleted.size();
-//        
-//        txtAvgTurn.setText(String.valueOf(avgTurn));
-//        txtWait.setText(String.valueOf(avgWait));
-//        txtThroughput.setText(calculateThroughput(listCompleted));
-    }//GEN-LAST:event_rRoundActionPerformed
-
-    private void txtWaitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWaitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtWaitActionPerformed
-
-    private void txtAvgTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAvgTurnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAvgTurnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -745,11 +606,10 @@ public class Starter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClearTbl;
-    private javax.swing.JButton createProcess;
-    private javax.swing.JButton fCFS;
+    private javax.swing.JButton btnLimpiarTabla;
+    private javax.swing.JButton btnCrearProceso;
+    private javax.swing.JButton btnFCFS;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -766,54 +626,39 @@ public class Starter extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblAvgTTime;
-    private javax.swing.JLabel lblAvgWtime;
-    private javax.swing.JLabel lblthroughput;
-    private javax.swing.JTextField pATimeTxt;
-    private javax.swing.JTextField pBTimeTxt;
-    private javax.swing.JTextField pIdTxt;
-    private javax.swing.JTextField pNameTxt;
-    private javax.swing.JButton rRound;
-    private javax.swing.JButton sJF;
-    private javax.swing.JButton sRT;
-    private javax.swing.JTextField tQuantumtxt;
-    private javax.swing.JTable tblAddedProcess;
-    private javax.swing.JTable tblComplete;
-    private javax.swing.JTextField txtAvgTurn;
-    private javax.swing.JTextField txtThroughput;
-    private javax.swing.JTextField txtWait;
-    // End of variables declaration//GEN-END:variables
-
-    private String calculateThroughput(List<ProcessObj> listCompleted) {
-        List<Integer> completedTimes = new ArrayList<>();
-        for (int i = 0; i < listCompleted.size(); i++) {
-            completedTimes.add(listCompleted.get(i).getCompleteTime()); 
-        }
-        Collections.sort(completedTimes);
-        float tPut = (float) completedTimes.size()/completedTimes.get(completedTimes.size()-1);
-        float roudTput = (float) (Math.round(tPut * 100.0) / 100.0);
-        return Float.toString(roudTput);
-    }
+    private javax.swing.JLabel lblPromedioServicio;
+    private javax.swing.JLabel lblPromedioEspera;
+    private javax.swing.JTextField txtInstanteLlegada;
+    private javax.swing.JTextField txtTiempoEspera;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JButton btnRoundRobin;
+    private javax.swing.JButton btnSJF;
+    private javax.swing.JTextField txtQuantums;
+    private javax.swing.JTable tblListaProcesos;
+    private javax.swing.JTable tblListaCompletados;
+    private javax.swing.JTextField txtPromedioServicio;
+    private javax.swing.JTextField txtPromedioEspera;
 
     private List<ProcessObj> resetBurst(List<ProcessObj> recive) {
-        DefaultTableModel mdl = (DefaultTableModel) tblAddedProcess.getModel();
+        DefaultTableModel mdl = (DefaultTableModel) tblListaProcesos.getModel();
         List<ProcessObj> sendList = new ArrayList<>();
+
         for (int i = 0; i < mdl.getRowCount(); i++) {
-            String pName = (String) mdl.getValueAt(i, 1);
-            int bTime = (int) mdl.getValueAt(i, 3);
+            String nombre = (String) mdl.getValueAt(i, 1);
+            int tiempoejecucion = (int) mdl.getValueAt(i, 3);
             
             for (ProcessObj recive1 : recive) {
-                if (pName.equals(recive1.getName())) {
-                    recive1.setBrustTime(bTime);
-                    recive1.setWaitingTime(recive1.getTurnaroundTime()- bTime);
+                if (nombre.equals(recive1.getNombre())) {
+
+                    recive1.setTiempoejecucion(tiempoejecucion);
+                    recive1.setTiempoespera(recive1.getTiemposervicio() - tiempoejecucion);
                     sendList.add(recive1);
+
                 }
-                
             }
         }
-        
-        
+
         return sendList;
     }
 }

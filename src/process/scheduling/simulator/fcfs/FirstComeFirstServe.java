@@ -14,56 +14,67 @@ import process.scheduling.simulator.ProcessObj;
 
 /**
  *
- * @author Mahesh
+ * @author Alfredo
  */
 public class FirstComeFirstServe {
-        int time = 0;
-        Queue<ProcessObj> q = new LinkedList<>();
-        List<ProcessObj> list = new ArrayList<>();
-        List<ProcessObj> completed = new ArrayList<>();
+    int tiempo = 0;
+
+    Queue<ProcessObj> cola = new LinkedList<>();
+    List<ProcessObj> lista = new ArrayList<>();
+    List<ProcessObj> listacompletados = new ArrayList<>();
+
     public List<ProcessObj> allocateResources( List<ProcessObj> l) throws InterruptedException {
-        System.out.println("Started the first come first serve algorithm--->");
-        list=l;
-//        addToQueue();
-        while (list.size()>0 || q.size()>0) { 
-            addToQueue();
-            while (q.size()==0) {                
-                System.out.println("------Waiting to recive a process---------");
+        System.out.println("EMPEZANDO PRIMERO EN LLEGAR PRIMERO EN SER SERVIDO (FCFS)--->");
+        lista = l ;
+
+        while (lista.size()>0 || cola.size()>0) {
+
+            agregarACola();
+
+            while (cola.size()==0) {
+                System.out.println("------Esperando Procesos--------");
                 TimeUnit.SECONDS.sleep(1);
-                time++;
-                addToQueue();
+                tiempo++;
+                agregarACola();
             }
-            ProcessObj processRun = q.remove(); 
-            System.out.println("Process which name - " + processRun.getName() + " and Id = " + processRun.getId() + " is going run");
-            for (int j = 0; j < processRun.getBrustTime(); j++) {
-                System.out.println("------running a seccond--------");
+
+            ProcessObj ProcesoCorriendo = cola.remove();
+            System.out.println("Nombre del Proceso: - " + ProcesoCorriendo.getNombre() + " con ID = " + ProcesoCorriendo.getId() + " esta corriendo");
+
+            for (int j = 0; j < ProcesoCorriendo.getTiempoejecucion(); j++) {
+                System.out.println("------Corriendo a 1 segundo--------");
                 TimeUnit.SECONDS.sleep(1);
-                time++;
-                addToQueue();
+                tiempo++;
+                agregarACola();
             }
-            processRun.setCompleteTime(time);
-            processRun.setTurnaroundTime(time-processRun.getArrivalTime());
-            processRun.setWaitingTime(processRun.getTurnaroundTime()-processRun.getBrustTime());
-            System.out.println(" process completed time = "+processRun.getCompleteTime());
-            System.out.println(" process turnaround time = "+processRun.getTurnaroundTime());
-            System.out.println(" process waiting time = "+processRun.getWaitingTime());
+
+            ProcesoCorriendo.setInstantefin(tiempo);
+            ProcesoCorriendo.setTiemposervicio(tiempo - ProcesoCorriendo.getInstantellegada());
+            ProcesoCorriendo.setTiempoespera(ProcesoCorriendo.getTiemposervicio() - ProcesoCorriendo.getTiempoejecucion());
+            System.out.println(" TIEMPO DE COMPLETADO = "+ProcesoCorriendo.getInstantefin());
+            System.out.println(" TIEMPO DE SERVICIO = "+ProcesoCorriendo.getTiemposervicio());
+            System.out.println(" TIEMPO DE ESPERA = "+ProcesoCorriendo.getTiempoespera());
             
-            this.completed.add(processRun);
+            this.listacompletados.add(ProcesoCorriendo);
             
         }
-        return completed;
+
+        return listacompletados;
      }
     
-    public void addToQueue(){
-        if(!list.isEmpty()){
-            for (int i = 0; i < list.size(); i++) {
-            ProcessObj p = list.get(i);
-            if (time >= p.getArrivalTime()) {
-                q.add(p);
-                list.remove(i);
+    public void agregarACola(){
+
+        if(!lista.isEmpty()){
+            for (int i = 0; i < lista.size(); i++) {
+
+            ProcessObj p = lista.get(i);
+            if (tiempo >= p.getInstantellegada()) {
+                cola.add(p);
+                lista.remove(i);
+            }
+
             }
         }
-                       
-        }
+
     }
 }

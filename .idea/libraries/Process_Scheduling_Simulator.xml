@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Process_Scheduling_Simulator">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Process_Scheduling_Simulator.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -14,70 +14,75 @@ import process.scheduling.simulator.ProcessObj;
 
 /**
  *
- * @author Mahesh
+ * @author Alejandro Marquez
  */
 public class ShortestJobFirst {
-     int time = 0;
-        List<ProcessObj> q = new ArrayList<>();
-        List<ProcessObj> list = new ArrayList<>();
-        List<ProcessObj> completed = new ArrayList<>();
+     int tiempo = 0;
+        List<ProcessObj> Cola = new ArrayList<>();
+        List<ProcessObj> lista = new ArrayList<>();
+        List<ProcessObj> completados = new ArrayList<>();
     public List<ProcessObj> allocateResources( List<ProcessObj> l) throws InterruptedException {
-        System.out.println("Started the Shortest job first algorithm--->");
-        list=l;
-//        addToQueue();
-        while (list.size()>0 || q.size()>0) { 
-            addToQueue();
-            while (q.isEmpty()) {                
-                System.out.println("------Waiting to recive a process---------");
+
+        System.out.println("EMPEZANDO SIGUIENTE PROCESO MAS CORTO (SJN) ");
+        lista = l;
+
+        while (lista.size()>0 || Cola.size()>0) { 
+            AnadirACola();
+
+            while (Cola.isEmpty()) {                
+                System.out.println("------Esperando Procesos---------");
                 TimeUnit.SECONDS.sleep(1);
-                time++;
-                addToQueue();
+                tiempo++;
+                AnadirACola();
             }
-            ProcessObj processRun = selectTheBest();
-            System.out.println("Process which name - " + processRun.getName() + " and Id = " + processRun.getId() + " is going run");
-            for (int j = 0; j < processRun.getBrustTime(); j++) {
-                System.out.println("------running a seccond--------");
+
+            ProcessObj ProcesoCorriendo = SeleccionarMejor();
+            System.out.println("Nombre del Proceso: - " + ProcesoCorriendo.getNombre() + " con ID = " + ProcesoCorriendo.getId() + " esta corriendo");
+
+            for (int j = 0; j < ProcesoCorriendo.getTiempoejecucion(); j++) {
+                System.out.println("------Corriendo a 1 segundo--------");
                 TimeUnit.SECONDS.sleep(1);
-                time++;
-                addToQueue();
+                tiempo++;
+                AnadirACola();
             }
-            processRun.setCompleteTime(time);
-            processRun.setTurnaroundTime(time-processRun.getArrivalTime());
-            processRun.setWaitingTime(processRun.getTurnaroundTime()-processRun.getBrustTime());
-            System.out.println(" process completed time = "+processRun.getCompleteTime());
-            System.out.println(" process turnaround time = "+processRun.getTurnaroundTime());
-            System.out.println(" process waiting time = "+processRun.getWaitingTime());
+
+            ProcesoCorriendo.setInstantefin(tiempo);
+            ProcesoCorriendo.setTiemposervicio(tiempo-ProcesoCorriendo.getInstantellegada());
+            ProcesoCorriendo.setTiempoespera(ProcesoCorriendo.getTiemposervicio()-ProcesoCorriendo.getTiempoejecucion());
+            System.out.println(" TIEMPO DE COMPLETADO= "+ProcesoCorriendo.getInstantefin());
+            System.out.println(" TIEMPO DE SERVICIO = "+ProcesoCorriendo.getTiemposervicio());
+            System.out.println(" TIEMPO DE ESPERA = "+ProcesoCorriendo.getTiempoespera());
             
-            this.completed.add(processRun);
+            this.completados.add(ProcesoCorriendo);
             
         }
-        return completed;
+        return completados;
      }
     
-    public void addToQueue(){
-        if(!list.isEmpty()){
-            for (int i = 0; i < list.size(); i++) {
-            ProcessObj p = list.get(i);
-            if (time >= p.getArrivalTime()) {
-                q.add(p);
-                list.remove(i);
+    public void AnadirACola(){
+        if(!lista.isEmpty()){
+            for (int i = 0; i < lista.size(); i++) {
+            ProcessObj p = lista.get(i);
+            if (tiempo >= p.getInstantellegada()) {
+                Cola.add(p);
+                lista.remove(i);
             }
         }
                                 
         }
     }
 
-    private ProcessObj selectTheBest() {
-        List<Integer> bTimelist = new ArrayList<>();
-        if(!q.isEmpty()){
-            for (int i = 0; i < q.size(); i++) {
-                bTimelist.add(q.get(i).getBrustTime());
+    private ProcessObj SeleccionarMejor() {
+        List<Integer> TiempoenlistaB = new ArrayList<>();
+        if(!Cola.isEmpty()){
+            for (int i = 0; i < Cola.size(); i++) {
+                TiempoenlistaB.add(Cola.get(i).getTiempoejecucion());
             }
-            Collections.sort(bTimelist);
+            Collections.sort(TiempoenlistaB);
             
-            for (int i = 0; i < q.size(); i++) {
-                if (bTimelist.get(0)== q.get(i).getBrustTime()) {
-                    return q.remove(i);
+            for (int i = 0; i < Cola.size(); i++) {
+                if (TiempoenlistaB.get(0)== Cola.get(i).getTiempoejecucion()) {
+                    return Cola.remove(i);
                 }
             }
         }

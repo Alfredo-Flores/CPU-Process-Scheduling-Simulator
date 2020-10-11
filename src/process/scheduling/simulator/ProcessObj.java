@@ -11,109 +11,106 @@ package process.scheduling.simulator;
  * @author Mahesh
  */
 public class ProcessObj {
-    private String name; 
+    private String nombre;
     private int id;
-    private int arrivalTime;
-    private int brustTime;
-    private int completeTime;
-    private int turnaroundTime;
-    private int waitingTime;
+    private int instantellegada;
+    private int tiempoejecucion;
+    private int instantefin;
+    private int tiemposervicio;
+    private int tiempoespera;
 
     /**
-     * @param name
+     * @param nombre
      * @param id
-     * @param arrivalTime
-     * @param brustTime
+     * @param instantellegada
+     * @param tiempoejecucion
      */
-    public ProcessObj(String name, int id, int arrivalTime, int brustTime){
+    public ProcessObj(String nombre, int id, int instantellegada, int tiempoejecucion){
         this.id = id;
-        this.name = name;
-        this.arrivalTime= arrivalTime;
-        this.brustTime = brustTime;
+        this.nombre = nombre;
+        this.instantellegada = instantellegada;
+        this.tiempoejecucion = tiempoejecucion;
     }
 
-    public ProcessObj(ProcessObj obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
-     * @param name the name to set
+     * @param nombre the name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     /**
      * @return the arrivalTime
      */
-    public int getArrivalTime() {
-        return arrivalTime;
+    public int getInstantellegada() {
+        return instantellegada;
     }
 
     /**
-     * @param arrivalTime the arrivalTime to set
+     * @param instantellegada the arrivalTime to set
      */
-    public void setArrivalTime(int arrivalTime) {
-        this.arrivalTime = arrivalTime;
+    public void setInstantellegada(int instantellegada) {
+        this.instantellegada = instantellegada;
     }
 
     /**
      * @return the brustTime
      */
-    public int getBrustTime() {
-        return brustTime;
+    public int getTiempoejecucion() {
+        return tiempoejecucion;
     }
 
     /**
-     * @param brustTime the brustTime to set
+     * @param tiempoejecucion the brustTime to set
      */
-    public void setBrustTime(int brustTime) {
-        this.brustTime = brustTime;
+    public void setTiempoejecucion(int tiempoejecucion) {
+        this.tiempoejecucion = tiempoejecucion;
     }
 
     /**
      * @return the completeTime
      */
-    public int getCompleteTime() {
-        return completeTime;
+    public int getInstantefin() {
+        return instantefin;
     }
 
     /**
-     * @param completeTime the completeTime to set
+     * @param instantefin the completeTime to set
      */
-    public void setCompleteTime(int completeTime) {
-        this.completeTime = completeTime;
+    public void setInstantefin(int instantefin) {
+        this.instantefin = instantefin;
     }
 
     /**
      * @return the turnaroundTime
      */
-    public int getTurnaroundTime() {
-        return turnaroundTime;
+    public int getTiemposervicio() {
+        return tiemposervicio;
     }
 
     /**
-     * @param turnaroundTime the turnaroundTime to set
+     * @param tiemposervicio the turnaroundTime to set
      */
-    public void setTurnaroundTime(int turnaroundTime) {
-        this.turnaroundTime = turnaroundTime;
+    public void setTiemposervicio(int tiemposervicio) {
+        this.tiemposervicio = tiemposervicio;
     }
 
     /**
      * @return the waitingTime
      */
-    public int getWaitingTime() {
-        return waitingTime;
+    public int getTiempoespera() {
+        return tiempoespera;
     }
 
     /**
-     * @param waitingTime the waitingTime to set
+     * @param tiempoespera the waitingTime to set
      */
-    public void setWaitingTime(int waitingTime) {
-        this.waitingTime = waitingTime;
+    public void setTiempoespera(int tiempoespera) {
+        this.tiempoespera = tiempoespera;
     }
 
     /**
@@ -132,7 +129,7 @@ public class ProcessObj {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return super.toString();
     }
     
     
